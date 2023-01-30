@@ -10,4 +10,8 @@ RSpec.describe Profile, type: :model do
     subject { Profile.new(username: 'something') }
     it { should validate_uniqueness_of(:username) }
   end
+
+  describe 'associations' do
+    it { should have_many(:repositories) }
+  end
 end
