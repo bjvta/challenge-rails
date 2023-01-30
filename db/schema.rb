@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,26 +12,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_30_175002) do
-  create_table "profiles", force: :cascade do |t|
-    t.string "username", limit: 255, null: false
-    t.boolean "superuser", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+ActiveRecord::Schema[7.0].define(version: 20_220_930_175_002) do
+  create_table 'profiles', force: :cascade do |t|
+    t.string 'username', limit: 255, null: false
+    t.boolean 'superuser', default: false, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['username'], name: 'index_profiles_on_username', unique: true
   end
 
-  create_table "repositories", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
-    t.text "tags", limit: 1024, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'repositories', force: :cascade do |t|
+    t.string 'name', limit: 255, null: false
+    t.text 'tags', limit: 1024, null: false
+    t.integer 'profile_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['profile_id'], name: 'index_repositories_on_profile_id'
   end
 
-  create_table "view_counts", force: :cascade do |t|
-    t.string "path", null: false
-    t.integer "views", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'view_counts', force: :cascade do |t|
+    t.string 'path', null: false
+    t.integer 'views', default: 0, null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

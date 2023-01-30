@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Home' do
   describe 'GET /' do
-
     subject(:get_index) { get '/' }
 
     it 'increments the view count' do
