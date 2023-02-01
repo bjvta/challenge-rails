@@ -6,30 +6,30 @@ RSpec.describe ReportService do
   describe '#generate' do
     it 'should return an array with data as profiles' do
       profiles = [{
-                    "id": 1,
-                    "username": "eat-music-4",
-                    "superuser": false
-                  },
+        "id": 1,
+        "username": 'eat-music-4',
+        "superuser": false
+      },
                   {
                     "id": 2,
-                    "username": "leopard-7",
+                    "username": 'leopard-7',
                     "superuser": false
                   },
                   {
                     "id": 3,
-                    "username": "espresso-talk-5",
+                    "username": 'espresso-talk-5',
                     "superuser": false
                   }].to_json
       repositories = [{
-                        "id": 1,
-                        "name": "balance-mocha-6",
-                        "tags": "linux,swift,mysql",
-                        "profile_id": 1
-                      },
+        "id": 1,
+        "name": 'balance-mocha-6',
+        "tags": 'linux,swift,mysql',
+        "profile_id": 1
+      },
                       {
                         "id": 2,
-                        "name": "drink-owl-8",
-                        "tags": "bsd,python,postgresql",
+                        "name": 'drink-owl-8',
+                        "tags": 'bsd,python,postgresql',
                         "profile_id": 14
                       }].to_json
       allow_any_instance_of(::External::Client).to receive(:fetch_profiles).and_return(JSON.parse(profiles))

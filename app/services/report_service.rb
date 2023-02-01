@@ -6,7 +6,7 @@ class ReportService
   def generate
     external_client = ::External::Client.new
     profiles = external_client.fetch_profiles
-    profiles.map{ |p| p['repositories'] = [] }
+    profiles.map { |p| p['repositories'] = [] }
     repositories = external_client.fetch_repositories
     repositories.each do |repository|
       profile = profiles.find { |p| p['id'] == repository['profile_id'] }
@@ -15,7 +15,7 @@ class ReportService
     convert_to_sym profiles
   end
 
-  def convert_to_sym profiles
-    profiles.map{ |profile| profile.deep_symbolize_keys }
+  def convert_to_sym(profiles)
+    profiles.map(&:deep_symbolize_keys)
   end
 end
