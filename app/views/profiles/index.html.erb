@@ -1,14 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Profiles</h1>
+<% content_for :title do %>
+  Profiles
+<% end %>
 
-<div id="profiles">
+<% content_for :new_button do %>
+  <%= link_to "New profile", new_profile_path, class: 'btn btn-info' %>
+<% end %>
+
+<% content_for :thead do %>
+  <th>Username</th>
+  <th>Actions</th>
+<% end %>
+
+<% content_for :tbody do %>
   <% @profiles.each do |profile| %>
-    <%= render profile %>
-    <p>
-      <%= link_to "Show this profile", profile %>
-    </p>
+    <tr>
+      <td><%= profile.username %></td>
+      <td><%= link_to "Show this profile", profile %></td>
+    </tr>
   <% end %>
-</div>
+<% end %>
 
-<%= link_to "New profile", new_profile_path %>
+<%= render template: 'layouts/abstract/index' %>

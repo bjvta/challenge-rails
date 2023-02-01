@@ -1,0 +1,16 @@
+<div>
+  <h1><%= yield :title %></h1>
+</div>
+
+<div><%= yield :new_button %></div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <%= yield :thead %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= yield :tbody %>
+  </tbody>
+</table>

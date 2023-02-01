@@ -1,6 +1,50 @@
-<% @profiles.each do |profile| %>
-  <%= profile.username %>
-  <% profile.repositories.each do |repository| %>
-    <%= repository.name %>
+<% content_for :title do %>
+  Internal Report
+<% end %>
+
+<% content_for :new_button do %>
+  <%= form_tag(reports_path, :method => "get", id: "search-form") do %>
+    <div class="row form-group">
+      <div class="col-md-6">
+        <label for="">Tag</label>
+        <%= text_field_tag 'tag', params[:tag] , class: 'form-control select2'  %>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-6">
+          <%= submit_tag "Search", class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
   <% end %>
 <% end %>
+
+<% content_for :thead do %>
+  <th scope="col">#</th>
+  <th scope="col">User</th>
+  <th scope="col">Repositories</th>
+<% end %>
+
+<% content_for :tbody do %>
+  <% @profiles.each_with_index  do |profile, index| %>
+    <tr>
+      <td><%= index + 1%></td>
+      <td><%= profile.username %></td>
+      <td >
+        <% if profile.repositories.any? %>
+          <table class="table table-bordered">
+            <th colspan="">Name</th>
+            <th colspan="">Tags</th>
+            <% profile.repositories.each do |repository| %>
+              <tr>
+                <td><%= repository.name %></td>
+                <td><%= repository.tags %></td>
+              </tr>
+            <% end  %>
+          </table>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+
+<%= render template: 'layouts/abstract/index' %>

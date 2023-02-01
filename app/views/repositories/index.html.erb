@@ -1,14 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Repositories</h1>
+<% content_for :title do %>
+  Repositories
+<% end %>
 
-<div id="repositories">
+<% content_for :new_button do %>
+  <%= link_to "New repository", new_repository_path, class: 'btn btn-info' %>
+<% end %>
+
+<% content_for :thead do %>
+  <th>Name</th>
+  <th>Tags</th>
+  <th>Actions</th>
+<% end %>
+
+<% content_for :tbody do %>
   <% @repositories.each do |repository| %>
-    <%= render repository %>
-    <p>
-      <%= link_to "Show this repository", repository %>
-    </p>
+    <tr>
+      <td><%= repository.name %></td>
+      <td><%= repository.tags %></td>
+      <td><%= link_to "Show this repository", repository %></td>
+    </tr>
   <% end %>
-</div>
+<% end %>
 
-<%= link_to "New repository", new_repository_path %>
+<%= render template: 'layouts/abstract/index' %>

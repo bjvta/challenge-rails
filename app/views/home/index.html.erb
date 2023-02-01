@@ -1,6 +1,20 @@
 
-<% @viewcounts.each do |view_count| %>
-  <%= view_count.path %>
-  <%= view_count.views %>
-  <br>
-<% end %>
+<h1>Counter view</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Path</th>
+    <th scope="col">Counter</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @viewcounts.each_with_index  do |view_count, index| %>
+    <tr>
+      <td><%= index + 1%></td>
+      <td><%= view_count.path %></td>
+      <td> <%= view_count.views %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

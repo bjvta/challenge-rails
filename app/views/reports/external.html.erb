@@ -1,6 +1,35 @@
-<% @profiles.each do |profile| %>
-  <%= profile[:username] %>
-  <% profile[:repositories].each do |repository| %>
-    <%= repository[:name] %>
+<% content_for :title do %>
+  External Report
+<% end %>
+
+<% content_for :thead do %>
+  <th scope="col">#</th>
+  <th scope="col">User</th>
+  <th scope="col">Repositories</th>
+<% end %>
+
+<% content_for :tbody do %>
+  <% @profiles.each_with_index  do |profile, index| %>
+    <tr>
+      <td><%= index + 1%></td>
+      <td><%= profile[:username] %></td>
+      <td >
+        <% if profile[:repositories].any? %>
+          <table class="table table-bordered">
+            <th colspan="">Name</th>
+            <th colspan="">Tags</th>
+            <% profile[:repositories].each do |repository| %>
+              <tr>
+                <td><%= repository[:name] %></td>
+                <td><%= repository[:tags] %></td>
+              </tr>
+            <% end  %>
+          </table>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 <% end %>
+
+<%= render template: 'layouts/abstract/index' %>
+
