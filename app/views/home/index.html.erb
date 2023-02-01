@@ -1,1 +1,6 @@
-lala
+
+<% @viewcounts.each do |view_count| %>
+  <%= view_count.path %>
+  <%= view_count.views %>
+  <br>
+<% end %>
