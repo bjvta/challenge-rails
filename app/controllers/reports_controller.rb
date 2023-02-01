@@ -9,4 +9,8 @@ class ReportsController < ApplicationController
       @profiles = Profile.where(id: repositories.map{ |r| r.profile_id }.compact)
     end
   end
+
+  def external
+    @profiles = ReportService.new.generate
+  end
 end

@@ -1,0 +1,6 @@
+<% @profiles.each do |profile| %>
+  <%= profile[:username] %>
+  <% profile[:repositories].each do |repository| %>
+    <%= repository[:name] %>
+  <% end %>
+<% end %>
