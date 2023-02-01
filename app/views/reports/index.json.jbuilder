@@ -1,3 +1,8 @@
 # frozen_string_literal: true
 
-json.array! @profiles, partial: 'reports/profile', as: :profile
+json.array!(@profiles) do |profile|
+  json.(profile, :username)
+  json.repositories profile.repositories do |repository|
+    json.(repository, :id, :name, :tags)
+  end
+end

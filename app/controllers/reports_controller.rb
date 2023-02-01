@@ -2,6 +2,6 @@
 
 class ReportsController < ApplicationController
   def index
-    @profiles = Profile.all
+    @profiles = Profile.all.includes(:repositories)
   end
 end
